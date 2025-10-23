@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveo Health - Connecting Hospitals with Trusted Suppliers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo::before {
+            content: "⚕";
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #2563eb;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #2563eb;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #2563eb;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e40af;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+        
+        .step p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Benefits */
+        .benefits {
+            background: #f8fafc;
+            padding: 5rem 2rem;
+        }
+        
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .benefit-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card h4 {
+            color: #2563eb;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-card ul {
+            list-style: none;
+            color: #666;
+        }
+        
+        .benefit-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .benefit-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        /* Testimonial */
+        .testimonial {
+            padding: 5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial blockquote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .testimonial cite {
+            color: #2563eb;
+            font-weight: 600;
+            font-style: normal;
+        }
+        
+        /* Pricing */
+        .pricing {
+            background: #f8fafc;
+            padding: 5rem 2rem;
+        }
+        
+        .pricing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #2563eb;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            color: #1e40af;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-card li {
+            padding: 0.7rem 0;
+            color: #666;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .pricing-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* Contact Form */
+        .contact {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact form {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #93c5fd;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Proveo Health</div>
+            <ul>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Connecting Hospitals with Trusted Suppliers</h1>
+        <p>Argentina's first B2B platform that simplifies medical supply procurement with competitive offers and verified suppliers</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Request Demo</a>
+            <a href="#contact" class="btn btn-secondary">Register as Supplier</a>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">📝</div>
+                <h3>1. Post Your Needs</h3>
+                <p>Hospitals upload their requirements for medical supplies, equipment or services on the platform</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">💼</div>
+                <h3>2. Receive Competitive Offers</h3>
+                <p>Verified suppliers send confidential quotes, generating price competition</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">✅</div>
+                <h3>3. Compare and Choose</h3>
+                <p>Compare prices, certifications and reviews in one place. Order and pay securely</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits" id="benefits">
+        <div class="benefits-container">
+            <h2 class="section-title">Benefits for Everyone</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>For Hospitals</h4>
+                    <ul>
+                        <li>Save 10-20% on costs</li>
+                        <li>3x faster procurement process</li>
+                        <li>Complete price transparency</li>
+                        <li>Suppliers verified by regulations</li>
+                        <li>Centralized dashboard</li>
+                    </ul>
+                </div>
+                <div class="benefit-card">
+                    <h4>For Suppliers</h4>
+                    <ul>
+                        <li>Visibility across Argentina</li>
+                        <li>Access to new clients</li>
+                        <li>Compliance badges (ISO, ANMAT)</li>
+                        <li>Trend analytics</li>
+                        <li>Client base expansion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial">
+        <blockquote>
+            "We waste too much time chasing suppliers and manually comparing quotes. If there was a transparent and centralized platform, we could reduce costs and make purchases much more efficient."
+        </blockquote>
+        <cite>— Laura Fernández, Purchasing Manager, Private Hospital Buenos Aires</cite>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Simple and Transparent Plans</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Basic Plan</h3>
+                    <div class="price">Free</div>
+                    <p>For Hospitals</p>
+                    <ul>
+                        <li>Access to verified suppliers</li>
+                        <li>Request quotes</li>
+                        <li>1-3% commission per purchase</li>
+                        <li>Review system</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Premium Plan</h3>
+                    <div class="price">$99<span style="font-size: 1rem;">/month</span></div>
+                    <p>For Suppliers</p>
+                    <ul>
+                        <li>Featured placement</li>
+                        <li>Compliance badge</li>
+                        <li>Analytics dashboard</li>
+                        <li>Buyer insights</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <form action="https://formspree.io/f/xyznqdnq" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="organization">Organization *</label>
+                <input type="text" id="organization" name="organization" required>
+            </div>
+            <div class="form-group">
+                <label for="role">I am a... *</label>
+                <select id="role" name="role" required>
+                    <option value="">Select an option</option>
+                    <option value="hospital">Hospital / Healthcare Facility</option>
+                    <option value="supplier">Medical Supplier</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Proveo Health. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy</a>
+            <a href="#">Contact</a>
+            <a href="#">FAQs</a>
+        </div>
+    </footer>
+</body>
+</html>
