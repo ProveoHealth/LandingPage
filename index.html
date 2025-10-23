@@ -46,9 +46,10 @@
             gap: 0.5rem;
         }
         
-        .logo::before {
-            content: "⚕";
-            font-size: 2rem;
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
         
         nav ul {
@@ -428,7 +429,10 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">Proveo Health</div>
+            <div class="logo">
+                <img src="data:image/png;base64,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" alt="Proveo Health Logo" class="logo-img">
+                Proveo Health
+            </div>
             <ul>
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#benefits">Benefits</a></li>
